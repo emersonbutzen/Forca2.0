@@ -2,4 +2,5 @@
 
 Atividade 04
 
-Nathalia
+Classes
+[Jogo, Jogador, Tabuleiro]
