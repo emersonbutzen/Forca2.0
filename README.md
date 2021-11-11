@@ -5,7 +5,12 @@ Data de Entrega: Segunda-feira, dia 08/11/2021
 
 PRINCIPAL (700XP)
 - Implementar o jogo da forca 2.0;
-- Devem ser utilizadas pelo menos duas classes, contemplando conceitos como encapsulamento, variáveis estáticas, atributos e métodos; [Jogo, Jogador, Tabuleiro]
+- Devem ser utilizadas:
+    - pelo menos duas classes: OK;
+    - contemplando conceitos como encapsulamento: OK
+    - variáveis estáticas: Ok;
+    - atributos: OK;
+    - métodos: Ok;
 - LocalStorage e/ou SessionStorage para armazenar highscore (podem considerar o que quiserem como highscore, mas pensei aqui no tempo que o jogador levou pra acertar; quanto menor, melhor);
 - Utilizar pelo menos uma função de getElementBy ou querySelector para buscar algum elemento no DOM;
 - Utilizar o event listener para reconhecer SOMENTE LETRAS do alfabeto;
