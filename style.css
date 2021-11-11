@@ -1,0 +1,142 @@
+.container {
+  justify-content: center;
+  display: flex;
+  border-radius: 10px;
+  margin-top: 5%;
+}
+
+body {
+  background-color: #41796a;
+}
+
+.interface {
+  padding-top: 5%;
+  width: 70vw;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.letter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.word {
+  color: white;
+  margin: 0;
+  font-size: 2rem;
+}
+.gameContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-left: 5%;
+}
+.wordsContainer {
+  display: flex;
+  padding-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.words2Container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.usedLetters {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.usedLetter {
+  transform: scale(0.5);
+  text-align: center;
+}
+
+#highscore {
+  height: 30px;
+  font-size: 2.5rem;
+  color: white;
+  text-align: end;
+  font-family: "Pangolin", cursive;
+}
+.forca {
+  border-radius: 10px;
+}
+
+p {
+  font-family: "Pangolin", cursive;
+}
+
+label {
+  color: white;
+  font-size: 3rem;
+}
+
+input {
+  border-radius: 10px;
+  border: none;
+  height: 40px;
+  width: 50%;
+}
+
+button {
+  border-radius: 10px;
+  border: none;
+  color: white;
+  background-color: #41796a;
+  font-family: "Pangolin", cursive;
+  font-size: 1.5rem;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#cancelButton:hover {
+  color: red;
+}
+
+#submitButton:hover {
+  color: greenyellow;
+}
+
+.key {
+  width: 62px;
+  height: 63px;
+  background: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s;
+  margin: 4px;
+}
+
+.key:hover {
+  background: #41796a;
+  border: 1px solid #ffffff;
+  cursor: pointer;
+  color: white;
+}
+
+.key p {
+  font-size: 30px;
+  line-height: 35px;
+  font-family: "Pangolin", cursive;
+}
+#keyboard {
+  margin: auto;
+  width: 750px;
+  display: flex;
+  flex-wrap: wrap;
+}
+#keyboard:nth-child(1) {
+  margin-left: 15px;
+}

@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-  </head>
-  <body></body>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Pangolin&display=swap" rel="stylesheet">
+    
+    <title>Jogo da Forca</title>
+</head>
+<body>
+    <div class="container">
+        <img src="./src/assets/outraForca.png" alt="Forca" class="forca">
+        
+        <div class="gameContainer">
+            <div class="usedLetters">
+                <div class="words2Container">
+                    <div class="usedLetter">
+                        <p class="word">T</p>
+                        <img src="./src/assets/tracoNew.png" alt="">
+                    </div>
+                    <div class="usedLetter">
+                        <p class="word">E</p>
+                        <img src="./src/assets/tracoNew.png" alt="">
+                    </div>
+                    <div class="usedLetter">
+                        <p class="word">S</p>
+                        <img src="./src/assets/tracoNew.png" alt="">
+                    </div>
+                    <div class="usedLetter">
+                        <p class="word">T</p>
+                        <img src="./src/assets/tracoNew.png" alt="">
+                    </div>
+                    <div class="usedLetter">
+                        <p class="word">E</p>
+                        <img src="./src/assets/tracoNew.png" alt="">
+                    </div>                                
+                    
+                </div>
+                <!-- *TODO vai ter pontos?? <p id="highscore">HighScore: 0</p> -->
+            </div>
+            <div class="wordsContainer"></div>         
+            </div>
+        </div>
+    </div>
+    <form onsubmit="submitWord(event)" class="interface">   
+        <label for="palavra"><p>Digite alguma palavra: </p></label>
+        <input id="palavra" type="text">
+        <button id="submitButton">Enviar</button>
+        <button id="cancelButton" type="reset">Cancelar</button>
+    </form>
+    <div id="keyboard"></div>
+</body>
+<script src="./index.js"></script>
 </html>
