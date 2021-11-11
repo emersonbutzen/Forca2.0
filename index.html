@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-  </head>
-  <body></body>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Pangolin&display=swap" rel="stylesheet">
+    
+    <title>Jogo da Forca</title>
+</head>
+<body>
+    <div class="container">
+        <img src="./assets/outraForca.png" alt="Forca" id="forca">
+        
+        <div class="gameContainer">
+            <div class="usedLetters">
+                <ul class="words2Container"></ul>
+                <p id="highscore">HighScore: 0</p>
+            </div>
+            <ul class="wordsContainer"></ul>         
+        </div>
+    </div>
+    <form onsubmit="submitWord(event)" class="interface">   
+        
+        <label for="palavra">Digite alguma palavra:</label>
+        <input id="palavra" type="text">
+        <button id="submitButton">Enviar</button>
+        <button id="cancelButton" type="reset">Cancelar</button>
+
+    </form>
+    <div id="keyboard"></div>
+</body>
+<script src="./src/index.js"></script>
 </html>
