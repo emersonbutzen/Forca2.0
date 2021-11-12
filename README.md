@@ -13,11 +13,9 @@ PRINCIPAL (700XP)
     - métodos: Ok;
     - pelo menos uma função de getElementBy: OK;
     - ou querySelector para buscar algum elemento no DOM: OK;
-    - 
-- LocalStorage e/ou SessionStorage para armazenar highscore (podem considerar o que quiserem como highscore, mas pensei aqui no tempo que o jogador levou pra acertar; quanto menor, melhor);
-
-- Utilizar o event listener para reconhecer SOMENTE LETRAS do alfabeto;
-- Ter um input com espaço para o usuário chutar a palavra de uma vez só;
+    - LocalStorage e/ou SessionStorage para armazenar highscore (podem considerar o que quiserem como highscore, mas pensei aqui no tempo que o jogador levou pra acertar; quanto menor, melhor): OK;
+    - Utilizar o event listener para reconhecer SOMENTE LETRAS do alfabeto: OK;
+    - Ter um input com espaço para o usuário chutar a palavra de uma vez só: OK;
 - A palavra deve ir sendo completada no DOM caso o usuário acerte;
 - O boneco na forca deve ir sendo desenhado a cada novo erro do usuário;
 - Caso o usuário perca, deve aparecer a mensagem GAME OVER (ou algo parecido), e caso vença, deve aparecer YOU WIN (ou algo semelhante);
