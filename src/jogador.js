@@ -1,10 +1,13 @@
+import { Pessoa } from './pessoa.js';
 class Jogador extends Pessoa {
-    constructor(nickName, vidas) {
+    constructor(nickName, membros) {
         super(nickName);
-        this.vidas = vidas;
+        this.vidas = membros;
     }
 
     perdeVida() {
         this.vidas -= 1;
     }
 }
+
+export { Jogador };

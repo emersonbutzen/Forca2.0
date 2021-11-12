@@ -45,4 +45,9 @@ class Jogo {
     getPalavraRandomica() {
         return array[Math.floor(Math.random() * this.#palavras.length)];
     }
+}    arrayPalavraSecreta = () => {
+        return  this.#palavraSecreta.split("");
+    }
 }
+
+export { Jogo };
