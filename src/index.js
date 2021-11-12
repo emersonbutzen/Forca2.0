@@ -100,7 +100,7 @@ function showHiddenWord(letter){
     teste.forEach((item)=>{
         item.innerText = letter.toUpperCase();
     })
-
+    return teste.length
 
 }
 
@@ -111,12 +111,20 @@ function submitWord(event,charArray){
     let word = event.target[0].value
 
     if(isLetter(word)){
-
+        
         if(charArray.includes(word.toLowerCase())){
-    
-            showHiddenWord(word)
-            correctLetters.push(word)
             
+            const len = showHiddenWord(word)
+            for(let j = 0; j < len; j++) {
+                correctLetters.push(word)
+            }
+            if (correctLetters.length == jogo.arrayPalavraSecreta().length) {
+                const msg = document.querySelector('.msgError');
+                const p = document.createElement('p')
+                p.innerText = 'PARABÉNS'
+            
+                msg.appendChild(p)
+            }
         }else{
     
             if(!wrongLettersArray.includes(word)){
