@@ -7,12 +7,15 @@ PRINCIPAL (700XP)
 - Implementar o jogo da forca 2.0;
 - Devem ser utilizadas:
     - pelo menos duas classes: OK;
-    - contemplando conceitos como encapsulamento: OK
+    - contemplando conceitos como encapsulamento: OK;
     - variáveis estáticas: Ok;
     - atributos: OK;
     - métodos: Ok;
+    - pelo menos uma função de getElementBy: OK;
+    - ou querySelector para buscar algum elemento no DOM: OK;
+    - 
 - LocalStorage e/ou SessionStorage para armazenar highscore (podem considerar o que quiserem como highscore, mas pensei aqui no tempo que o jogador levou pra acertar; quanto menor, melhor);
-- Utilizar pelo menos uma função de getElementBy ou querySelector para buscar algum elemento no DOM;
+
 - Utilizar o event listener para reconhecer SOMENTE LETRAS do alfabeto;
 - Ter um input com espaço para o usuário chutar a palavra de uma vez só;
 - A palavra deve ir sendo completada no DOM caso o usuário acerte;

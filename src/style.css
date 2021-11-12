@@ -19,6 +19,15 @@ body{
     align-items: center;
 }
 
+#jogo{
+    padding-top: 5%;
+    width: 70vw;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .letter{
     display: flex;
     flex-direction: column;

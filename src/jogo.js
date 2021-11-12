@@ -11,7 +11,7 @@ class Jogo {
     }
 
     iniciarJogo(nickName) {
-        this.jogador = new Jogador(nickName, Jogo.membros);
+        this.jogador = new Jogador(nickName, Jogo.membros);        
         return this.setPalavras().then((palavras) => {
             this.palavras.push(...palavras);
             this.#palavraSecreta = this.getPalavraRandomica();

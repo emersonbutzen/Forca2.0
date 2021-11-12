@@ -201,19 +201,35 @@ function isLetter(str) {
 }
 
 
-let jogo = new Jogo();
-jogo.iniciarJogo('Convidado').then(() => {
+const form = document.getElementById('jogo');
+const nickname = document.getElementById('nickname');
+form.addEventListener('reset', (event) => novoJogo(event, nickname));
+form.addEventListener('submit', (event) => recuperaJogo(event, nickname));
 
-    const arrayPalavraSecreta = jogo.arrayPalavraSecreta();
-    displayHighScore();
-    generateForca(arrayPalavraSecreta);
-    insertKeysToKeyboard();
+let novoJogo = (event, nickname) => {
+    console.log(nickname.value);
+    let jogo = new Jogo();
+    jogo.iniciarJogo(nickname.value).then(() => {
+
+        const arrayPalavraSecreta = jogo.arrayPalavraSecreta();
+        displayHighScore();
+        generateForca(arrayPalavraSecreta);
+        insertKeysToKeyboard();
 
 
+        inicializaTela(arrayPalavraSecreta);
+    });
+}
+
+let recuperaJogo = (event, nickname) => {
+    alert("Recuper");
+    // codigo recuperaJogo
+}
+
+function inicializaTela(arrayPalavraSecreta) {
     const keyboard = document.querySelector('#keyboard');
-    keyboard.addEventListener('click', (event) => setValueKeyBoard(event))
-    const form = document.querySelector('.interface')
-    console.log(form)
-    form.addEventListener('submit', (event)=> submitWord(event,arrayPalavraSecreta))
-
-});
+    keyboard.addEventListener('click', (event) => setValueKeyBoard(event));
+    const form = document.querySelector('.interface');
+    console.log(form);
+    form.addEventListener('submit', (event) => submitWord(event, arrayPalavraSecreta));
+}

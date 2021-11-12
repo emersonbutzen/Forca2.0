@@ -12,6 +12,12 @@
     <title>Jogo da Forca</title>
 </head>
 <body>
+    <form id="jogo">
+        <label for="nickname">Digite seu nickname:</label>
+        <input id="nickname" type="text">
+        <button id="iniciarButton" type="reset">Iniciar Jogo</button>
+        <button id="carregarButton" type="submit">Recuperar Jogo</button>
+    </form>
     <div class="container">
         <img src="./assets/outraForca.png" alt="Forca" id="forca">
         
@@ -22,7 +28,7 @@
             </div>
             <ul class="wordsContainer"></ul>         
         </div>
-    </div>
+    </div>    
     <form class="interface">   
         
         <label for="palavra">Digite alguma palavra:</label>
