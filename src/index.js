@@ -6,7 +6,27 @@ const tentativas = 0;
 const wrongLettersArray = []
 const correctLetters = []
 let vidas = 0;
-let highScore = undefined;
+//let highScore = getHighScoreFromLocalStorage() | persistHighScoreOnLocalStorage();
+
+
+function getHighScoreFromLocalStorage() {
+    return localStorage.getItem('highScore') | 0
+}
+
+function persistHighScoreOnLocalStorage(highScoreValue) {
+    localStorage.setItem('highScore',highScoreValue)
+}
+
+function actualScoreIsHighScore(atualScore) {
+    const persitedHighScore = getHighScoreFromLocalStorage();
+    if (persitedHighScore & (atualScore < persitedHighScore)) persistHighScoreOnLocalStorage(atualScore);
+}
+
+function displayHighScore() {
+    const highScoreValueElement = document.querySelector("#highscore_value");
+    const highScoreValue = getHighScoreFromLocalStorage();
+    highScoreValueElement.innerText = highScoreValue;
+}
 
 function generateKey(){
 
@@ -185,7 +205,8 @@ let jogo = new Jogo();
 jogo.iniciarJogo('Convidado').then(() => {
 
     const arrayPalavraSecreta = jogo.arrayPalavraSecreta();
-    generateForca(arrayPalavraSecreta)
+    displayHighScore();
+    generateForca(arrayPalavraSecreta);
     insertKeysToKeyboard();
 
 
