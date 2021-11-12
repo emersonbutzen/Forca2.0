@@ -1,23 +1,26 @@
 import { Jogador } from './jogador.js';
 class Jogo {
-    #palavras = [];
     #palavraSecreta;
-    static vidas = 6;
+    static membros = 6;
 
     constructor() {
         this.jogador;
         this.highScore;
         this.tentativas;
+        this.palavras = [];
     }
 
     iniciarJogo(nickName) {
-        this.jogador = new Jogador(nickName, vidas);
-        this.setPalavras();
-        this.#palavraSecreta = this.getPalavraRandomica();
+        this.jogador = new Jogador(nickName, Jogo.membros);
+        return this.setPalavras().then((palavras) => {
+            this.palavras.push(...palavras);
+            this.#palavraSecreta = this.getPalavraRandomica();
+            console.log(this.#palavraSecreta);            
+        });
     }
 
     reiniciarJogo(nickName, tentativas, palavraSecreta, highScore) {
-        this.jogador = new Jogador(nickName, vidas);
+        this.jogador = new Jogador(nickName, Jogo.membros);
         this.tentativas = tentativas;
         this.palavraSecreta = palavraSecreta;
         this.highScore = highScore;
@@ -30,24 +33,25 @@ class Jogo {
         const palavras = fetch(`${url}/random`, { method: 'get' })
             .then(response => response.json())
             .then(data => {
-                const palavraRandomica = data.word;            
-                return fetch(`${url}/near/${palavraRandomica}`);
+                const qualquerPalavra = data.word;            
+                return fetch(`${url}/near/${qualquerPalavra}`);
             })
             .then(palavrasResponse => palavrasResponse.json())
+            .then(data => {
+                return data;
+            })
             .catch(err => {
                 console.error('Request failed', err)
-            })
-
-            palavras.then(palavras => {
-                this.#palavras = palavras; 
             });
+        return palavras;    
     }
 
     getPalavraRandomica() {
-        return array[Math.floor(Math.random() * this.#palavras.length)];
+        return this.palavras[Math.floor(Math.random() * this.palavras.length)];
     }
-}    arrayPalavraSecreta = () => {
-        return  this.#palavraSecreta.split("");
+
+    arrayPalavraSecreta = () => {
+        return this.#palavraSecreta.split("");
     }
 }
 

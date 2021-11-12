@@ -2,11 +2,11 @@ import { Jogo } from './jogo.js';
 
 const keys = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Ç','Z','X','C','V','B','N','M',]
 
-const finalWord = 'teste'
-const charArray = finalWord.split("")
+const tentativas = 0;
 const wrongLettersArray = []
 const correctLetters = []
 let vidas = 0;
+let highScore = undefined;
 
 function generateKey(){
 
@@ -24,7 +24,7 @@ function generateKey(){
 
 }
 
-function generateCharArray(isVisible){
+function generateCharArray(isVisible, charArray){
 
     
 
@@ -40,9 +40,9 @@ function generateCharArray(isVisible){
 
 }
 
-function generateForca(){
+function generateForca(arrayPalavraSecreta){
 
-    const charArray = generateCharArray(false)
+    const charArray = generateCharArray(false, arrayPalavraSecreta)
     //console.log(charArray)
     const gameBoard = document.querySelector('.wordsContainer')
     //console.log(gameBoard)
@@ -66,7 +66,6 @@ function showHiddenWord(letter){
 
 }
 
-generateForca()
 
 function submitWord(event){
 
@@ -151,4 +150,10 @@ function insertKeysToKeyboard(){
 
 }
 
-insertKeysToKeyboard();
+
+let jogo = new Jogo();
+jogo.iniciarJogo('Convidado').then(() => {
+    const arrayPalavraSecreta = jogo.arrayPalavraSecreta();
+    generateForca(arrayPalavraSecreta)
+    insertKeysToKeyboard();
+});
