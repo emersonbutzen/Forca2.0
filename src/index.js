@@ -6,7 +6,28 @@ const tentativas = 0;
 const wrongLettersArray = []
 const correctLetters = []
 let vidas = 0;
-let highScore = undefined;
+let highScore = getHighScoreFromLocalStorage() | persistHighScoreOnLocalStorage();
+
+
+function getHighScoreFromLocalStorage() {
+    return localStorage.getItem('highScore')
+}
+
+function persistHighScoreOnLocalStorage(highScore=0) {
+    const persitedHighScore = getHighScoreFromLocalStorage();
+    if (!persitedHighScore) localStorage.setItem('highScore',highScore);
+}
+
+function actualScoreIsHighScore(atualScore) {
+    const persitedHighScore = getHighScoreFromLocalStorage();
+    if (persitedHighScore & (atualScore < persitedHighScore)) persistHighScoreOnLocalStorage(atualScore);
+}
+
+function displayHighScore() {
+    const highScoreValueElement = document.querySelector("#highscore_value");
+    const highScoreValue = highScore;
+    highScoreValueElement.innerText = highScoreValue;
+}
 
 function generateKey(){
 
