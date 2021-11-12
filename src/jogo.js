@@ -8,6 +8,8 @@ class Jogo {
         this.highScore;
         this.tentativas;
         this.palavras = [];
+        this.correct = [];
+        this.incorrect = new Set();
     }
 
     iniciarJogo(nickName) {
@@ -52,6 +54,14 @@ class Jogo {
 
     arrayPalavraSecreta = () => {
         return this.#palavraSecreta.split("");
+    }
+
+    addCorrect(value) {
+        this.correct.push(value);
+    }
+
+    addIncorrect(value) {
+        this.correct.add(value);
     }
 }
 

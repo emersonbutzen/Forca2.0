@@ -1,4 +1,4 @@
-class Cronometro {
+export class Cronometro {
     constructor() {
         this.control;
         this.horas = 0

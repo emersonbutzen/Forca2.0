@@ -1,13 +1,31 @@
 import { Jogo } from './jogo.js';
+import { Cronometro } from './cronometro.js';
 
 const keys = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Ç','Z','X','C','V','B','N','M',]
 
 const tentativas = 0;
-const wrongLettersArray = []
-const correctLetters = []
+let wrongLettersArray = []
+let correctLetters = []
 let vidas = 0;
 //let highScore = getHighScoreFromLocalStorage() | persistHighScoreOnLocalStorage();
 
+
+function convertObjToJSON(obj) {
+    return JSON.stringify(obj);
+}
+
+function persistGame(game){
+    const gameJSON = convertObjToJSON(game)
+    localStorage.setItem('game', gameJSON);
+}
+
+function getGame(){
+    return JSON.parse(localStorage.get('game'));
+}
+
+function removeGame() {
+    return localStorage.removeItem('game');
+}
 
 function getHighScoreFromLocalStorage() {
     return localStorage.getItem('highScore') | 0
@@ -107,10 +125,10 @@ function submitWord(event,charArray){
                 const component = generateWrongLetterComponent(word)
                 wrongLetters.innerHTML += component
                 wrongLettersArray.push(word)
-                vidas +=1;
-                if(vidas <= 6){
-    
-                    updateForca(vidas)
+                jogo.jogador.perdeVida();
+                if(jogo.jogador.vidas > 0){
+                
+                    updateForca(jogo.jogador.vidas)
     
                 }else{
                     
@@ -121,6 +139,7 @@ function submitWord(event,charArray){
             }
     
         }
+        persistGame(jogo);
     }else{
         const msg = document.querySelector('.msgError');
         const p = document.createElement('p')
@@ -150,6 +169,12 @@ function gameOver(){
 
     const forca = document.querySelector('#forca')
     forca.src = `./assets/gameOver.png`
+
+    const msg = document.querySelector('.msgError');
+    const p = document.createElement('p')
+    p.innerText = 'GAME OVER'
+
+    msg.appendChild(p)
 
 }
 
@@ -203,15 +228,39 @@ function isLetter(str) {
 
 const form = document.getElementById('jogo');
 const nickname = document.getElementById('nickname');
+const resetButton = document.getElementById("resetButton")
 form.addEventListener('reset', (event) => novoJogo(event, nickname));
 form.addEventListener('submit', (event) => recuperaJogo(event, nickname));
+resetButton.addEventListener('click', () => document.location.reload())
+
+
+let jogo = undefined;
 
 let novoJogo = (event, nickname) => {
+    
+    removeGame();
+    //console.log(jogo.jogador);
+    wrongLettersArray = [];
+    correctLetters = [];
     console.log(nickname.value);
-    let jogo = new Jogo();
+    jogo = new Jogo();
+
+    const cronometro = new Cronometro();
+
+
     jogo.iniciarJogo(nickname.value).then(() => {
 
-        const arrayPalavraSecreta = jogo.arrayPalavraSecreta();
+    let arrayPalavraSecreta = jogo.arrayPalavraSecreta();
+    generateForca(arrayPalavraSecreta);
+    insertKeysToKeyboard();
+    
+    cronometro.start();
+    setInterval(() => {
+        persistHighScoreOnLocalStorage(cronometro.convertToSeconds());
+        displayHighScore();
+    }, 1000)
+
+        arrayPalavraSecreta = jogo.arrayPalavraSecreta();
         displayHighScore();
         generateForca(arrayPalavraSecreta);
         insertKeysToKeyboard();
@@ -220,6 +269,7 @@ let novoJogo = (event, nickname) => {
         inicializaTela(arrayPalavraSecreta);
     });
 }
+
 
 let recuperaJogo = (event, nickname) => {
     alert("Recuper");
@@ -232,4 +282,4 @@ function inicializaTela(arrayPalavraSecreta) {
     const form = document.querySelector('.interface');
     console.log(form);
     form.addEventListener('submit', (event) => submitWord(event, arrayPalavraSecreta));
-}
+};
