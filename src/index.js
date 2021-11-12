@@ -105,7 +105,7 @@ function showHiddenWord(letter){
 }
 
 
-function submitWord(event,charArray){
+function submitLetter(event,charArray){
 
     event.preventDefault()
     let word = event.target[0].value
@@ -162,6 +162,53 @@ function submitWord(event,charArray){
     
     
     event.target[0].value = ''
+
+}
+
+function submitWord(event, palavraInput, charArray){
+
+    event.preventDefault();
+    let word = (palavraInput.value).split('');
+
+    let isEqual = charArray.filter((char, index) => {
+        return word[index] === char;
+    }).length === word.length;
+
+    if(isEqual){
+
+        word.map((letter) => {
+            showHiddenWord(letter);
+            correctLetters.push(letter);
+        });
+
+        const msg = document.querySelector('.msgError');
+                const p = document.createElement('p')
+                p.innerText = 'PARABÉNS'
+            
+                msg.appendChild(p)
+        
+        
+    }else{
+
+        word.map((letter) => {
+            if(!wrongLettersArray.includes(letter)){
+                const wrongLetters = document.querySelector('.words2Container')
+                const component = generateWrongLetterComponent(letter)
+                wrongLetters.innerHTML += component
+                wrongLettersArray.push(letter)
+                jogo.jogador.perdeVida();
+                if(jogo.jogador.vidas > 0){
+                
+                    updateForca(jogo.jogador.vidas);
+    
+                }else{
+                    gameOver();
+                }
+            }
+        });
+    }
+    
+    palavraInput.value = ''
 
 }
 
@@ -284,5 +331,8 @@ function inicializaTela(arrayPalavraSecreta) {
     keyboard.addEventListener('click', (event) => setValueKeyBoard(event));
     const form = document.querySelector('.interface');
     console.log(form);
-    form.addEventListener('submit', (event) => submitWord(event, arrayPalavraSecreta));
+    const palavraInput = document.getElementById('palavra');
+    const chuta = document.getElementById('chutaButton');
+    form.addEventListener('submit', (event) => submitLetter(event, arrayPalavraSecreta));
+    chuta.addEventListener('click', (event) => submitWord(event, palavraInput, arrayPalavraSecreta));
 };
