@@ -1,3 +1,4 @@
+import { Jogador } from './jogador.js';
 class Jogo {
     #palavras = [];
     #palavraSecreta;
