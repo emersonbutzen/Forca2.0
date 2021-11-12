@@ -231,7 +231,7 @@ const nickname = document.getElementById('nickname');
 const resetButton = document.getElementById("resetButton")
 form.addEventListener('reset', (event) => novoJogo(event, nickname));
 form.addEventListener('submit', (event) => recuperaJogo(event, nickname));
-resetButton.addEventListener('click', () => document.location.reload())
+resetButton.addEventListener('click', () => document.location.reload());
 
 
 let jogo = undefined;
@@ -260,13 +260,8 @@ let novoJogo = (event, nickname) => {
         displayHighScore();
     }, 1000)
 
-        arrayPalavraSecreta = jogo.arrayPalavraSecreta();
-        displayHighScore();
-        generateForca(arrayPalavraSecreta);
-        insertKeysToKeyboard();
 
-
-        inicializaTela(arrayPalavraSecreta);
+    inicializaTela(arrayPalavraSecreta);
     });
 }
 
