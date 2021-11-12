@@ -12,7 +12,7 @@ function generateKey(){
 
     const keyArray = keys.map((key)=>{
         const keyFormated = 
-                            `<div class="key" onclick="setValueKeyBoard('${key}')">`+
+                            `<div class="key">`+
                                 `<p>${key}</p>`+
                             `</div>`
 
@@ -67,39 +67,51 @@ function showHiddenWord(letter){
 }
 
 
-function submitWord(event){
+function submitWord(event,charArray){
 
     event.preventDefault()
-
     let word = event.target[0].value
 
-    if(charArray.includes(word.toLowerCase())){
+    if(isLetter(word)){
 
-        showHiddenWord(word)
-        correctLetters.push(word)
-        
-    }else{
-
-        if(!wrongLettersArray.includes(word)){
-
-            const wrongLetters = document.querySelector('.words2Container')
-            const component = generateWrongLetterComponent(word)
-            wrongLetters.innerHTML += component
-            wrongLettersArray.push(word)
-            vidas +=1;
-            if(vidas <= 6){
-
-                updateForca(vidas)
-
-            }else{
-                
-                gameOver();
+        if(charArray.includes(word.toLowerCase())){
+    
+            showHiddenWord(word)
+            correctLetters.push(word)
+            
+        }else{
+    
+            if(!wrongLettersArray.includes(word)){
+    
+                const wrongLetters = document.querySelector('.words2Container')
+                const component = generateWrongLetterComponent(word)
+                wrongLetters.innerHTML += component
+                wrongLettersArray.push(word)
+                vidas +=1;
+                if(vidas <= 6){
+    
+                    updateForca(vidas)
+    
+                }else{
+                    
+                    gameOver();
+                    
+                }
                 
             }
-            
+    
         }
-
+    }else{
+        const msg = document.querySelector('.msgError');
+        const p = document.createElement('p')
+        p.innerText = 'Digite uma letra do alfabeto'
+        setTimeout(()=>{
+            removeErrorMsg()
+        },2000)
+        msg.appendChild(p)
+        console.log(msg)
     }
+
     
     
     event.target[0].value = ''
@@ -132,10 +144,24 @@ function generateWrongLetterComponent(word){
 
 }
 
-function setValueKeyBoard(letra){
-   const input =  document.getElementById("palavra")
-   input.value += letra
-//    console.log(input.value)
+function setValueKeyBoard(event){
+
+    const letra = event.target.innerText
+    if(letra.length === 1){
+
+        const input =  document.getElementById("palavra")
+        input.value += letra
+    }
+
+}
+
+function removeErrorMsg(){
+
+    const errorMsg = document.querySelector('.msgError p')
+    if(errorMsg){
+        errorMsg.remove()
+    }
+
 }
 
 function insertKeysToKeyboard(){
@@ -150,10 +176,23 @@ function insertKeysToKeyboard(){
 
 }
 
+function isLetter(str) {
+    return str.length === 1 && str.match(/[a-z]/i) || str.toLowerCase() === 'ç';
+}
+
 
 let jogo = new Jogo();
 jogo.iniciarJogo('Convidado').then(() => {
+
     const arrayPalavraSecreta = jogo.arrayPalavraSecreta();
     generateForca(arrayPalavraSecreta)
     insertKeysToKeyboard();
+
+
+    const keyboard = document.querySelector('#keyboard');
+    keyboard.addEventListener('click', (event) => setValueKeyBoard(event))
+    const form = document.querySelector('.interface')
+    console.log(form)
+    form.addEventListener('submit', (event)=> submitWord(event,arrayPalavraSecreta))
+
 });

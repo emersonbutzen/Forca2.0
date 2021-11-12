@@ -148,3 +148,9 @@ button:hover{
 #keyboard:nth-child(1){
     margin-left: 15px;
 }
+
+.msgError{
+    color: red;
+    font-size: 2rem;
+    text-align: center;
+}
