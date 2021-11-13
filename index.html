@@ -13,13 +13,13 @@
 </head>
 <body>
     <form id="jogo">
-        <label for="nickname">Digite seu nickname:</label>
+        <label for="nickname" id="labelNick">Digite seu nickname:</label>
         <input id="nickname" type="text">
         <button id="iniciarButton" type="reset">Iniciar Jogo</button>
-        <button id="carregarButton" type="submit">Recuperar Jogo</button>
+        <!-- <button id="carregarButton" type="submit">Recuperar Jogo</button> -->
         <button id="resetButton" type="reset">Reiniciar</button>
     </form>
-    <div class="container">
+    <div class="container" id="container">
         <img src="./assets/outraForca.png" alt="Forca" id="forca">
         
         <div class="gameContainer">
@@ -30,7 +30,7 @@
             <ul class="wordsContainer"></ul>         
         </div>
     </div>    
-    <form class="interface">
+    <form class="interface" id="interface">
         <label for="palavra">Digite alguma letra/palavra:</label>
         <input id="palavra" type="text">
         <button id="submitButton">Enviar</button>

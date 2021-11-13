@@ -95,12 +95,27 @@ function generateForca(arrayPalavraSecreta){
 
 function showHiddenWord(letter){
 
-    const teste = document.querySelectorAll(`#${letter.toLowerCase()}`)
+    let chars = letter.split("")
+    let len = 1;
 
-    teste.forEach((item)=>{
-        item.innerText = letter.toUpperCase();
+    chars.forEach((char)=>{
+        const el = document.querySelectorAll(`#${char.toLowerCase()}`)
+        
+        if(el.length > 1){
+            len = el.length
+            el.forEach((item)=>{
+
+                item.innerText = char.toUpperCase()
+            })
+        }else{
+
+            el[0].innerText = char.toUpperCase()
+
+        }
     })
-    return teste.length
+
+
+    return len
 
 }
 
@@ -110,14 +125,23 @@ function submitLetter(event,charArray){
     event.preventDefault()
     let word = event.target[0].value
 
+    const finalWord = charArray.reduce((final,char)=>{
+        return final + char;
+    })
+
+    console.log(finalWord)
+    
+
     if(isLetter(word)){
         
         if(charArray.includes(word.toLowerCase())){
             
             const len = showHiddenWord(word)
+            console.log(len)
             for(let j = 0; j < len; j++) {
                 correctLetters.push(word)
             }
+            console.log(correctLetters)
             if (correctLetters.length == jogo.arrayPalavraSecreta().length) {
                 const msg = document.querySelector('.msgError');
                 const p = document.createElement('p')
@@ -148,6 +172,17 @@ function submitLetter(event,charArray){
     
         }
         persistGame(jogo);
+    }else if(word === finalWord){
+
+
+        showHiddenWord(word)
+        
+        const msg = document.querySelector('.msgError');
+                const p = document.createElement('p')
+                p.innerText = 'PARABÉNS'
+            
+                msg.appendChild(p)
+
     }else{
         const msg = document.querySelector('.msgError');
         const p = document.createElement('p')
@@ -288,6 +323,8 @@ form.addEventListener('reset', (event) => novoJogo(event, nickname));
 form.addEventListener('submit', (event) => recuperaJogo(event, nickname));
 resetButton.addEventListener('click', () => document.location.reload());
 
+document.getElementById('interface').style.display = 'none';
+document.getElementById('container').style.display = 'none';
 
 let jogo = undefined;
 
@@ -298,13 +335,19 @@ let novoJogo = (event, nickname) => {
     wrongLettersArray = [];
     correctLetters = [];
     console.log(nickname.value);
+    const nick = nickname.value
+    console.log(nick)
     jogo = new Jogo();
 
     const cronometro = new Cronometro();
+    renderNickName(nick)
 
 
     jogo.iniciarJogo(nickname.value).then(() => {
 
+    document.getElementById('interface').style.display = 'flex';
+    document.getElementById('container').style.display = 'flex';
+        
     let arrayPalavraSecreta = jogo.arrayPalavraSecreta();
     generateForca(arrayPalavraSecreta);
     insertKeysToKeyboard();
@@ -315,7 +358,7 @@ let novoJogo = (event, nickname) => {
         displayHighScore();
     }, 1000)
 
-
+    
     inicializaTela(arrayPalavraSecreta);
     });
 }
@@ -336,3 +379,15 @@ function inicializaTela(arrayPalavraSecreta) {
     form.addEventListener('submit', (event) => submitLetter(event, arrayPalavraSecreta));
     chuta.addEventListener('click', (event) => submitWord(event, palavraInput, arrayPalavraSecreta));
 };
+
+function renderNickName(nickName){
+    const input = document.querySelector('#nickname')
+    const label = document.querySelector('#labelNick')
+    label.innerText = 'NickName: '
+    const p = document.createElement('p')
+    p.setAttribute('id','nickName')
+    p.innerText = nickName
+    input.replaceWith(p)
+    
+
+}

@@ -86,9 +86,15 @@ p{
     font-family: 'Pangolin', cursive;
 }
 
+#nickName{
+    font-family: 'Pangolin', cursive;
+    font-size: 2.5rem;
+    color: greenyellow;
+}
+
 label{
     color: white;
-    font-size: 3rem;
+    font-size: 2rem;
     font-family: 'Pangolin', cursive;
 
 }

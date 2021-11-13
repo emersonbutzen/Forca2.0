@@ -1,7 +1,7 @@
 import { Jogador } from './jogador.js';
 class Jogo {
     #palavraSecreta;
-    static membros = 6;
+    static membros = 7;
 
     constructor() {
         this.jogador;
