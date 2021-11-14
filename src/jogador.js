@@ -1,8 +1,8 @@
 import { Pessoa } from './pessoa.js';
 class Jogador extends Pessoa {
-    constructor(nickName, membros) {
+    constructor(nickName, vidas) {
         super(nickName);
-        this.vidas = membros;
+        this.vidas = vidas;
     }
 
     perdeVida() {

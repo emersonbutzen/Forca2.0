@@ -1,7 +1,8 @@
+import { Cronometro } from './cronometro.js';
 import { Jogador } from './jogador.js';
 class Jogo {
     #palavraSecreta;
-    static membros = 7;
+    static vidas = 7;
 
     constructor() {
         this.jogador;
@@ -9,11 +10,15 @@ class Jogo {
         this.tentativas;
         this.palavras = [];
         this.correct = [];
+        this.wrongLettersArray = [];
+        this.correctLetters = [];
+        this.cronometro = new Cronometro();
         this.incorrect = new Set();
     }
 
     iniciarJogo(nickName) {
-        this.jogador = new Jogador(nickName, Jogo.membros);        
+        this.jogador = new Jogador(nickName, Jogo.vidas);
+        this.cronometro.start();
         return this.setPalavras().then((palavras) => {
             this.palavras.push(...palavras);
             this.#palavraSecreta = this.getPalavraRandomica();
@@ -22,7 +27,7 @@ class Jogo {
     }
 
     reiniciarJogo(nickName, tentativas, palavraSecreta, highScore) {
-        this.jogador = new Jogador(nickName, Jogo.membros);
+        this.jogador = new Jogador(nickName, Jogo.vidas);
         this.tentativas = tentativas;
         this.palavraSecreta = palavraSecreta;
         this.highScore = highScore;
